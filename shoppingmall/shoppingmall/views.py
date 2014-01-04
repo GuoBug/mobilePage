@@ -4,52 +4,36 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 import MySQLdb
 
-
+malls ={}
 
 def hello(request):
 	return HttpResponse('Hello ,django!')
 
 
 def Malls(request):
-	shoppingmall = {'name':'',
-                  'address':'',
-                  'phone':'',
-                  'city':'',
-                  'review':'',
-                  'longitude':'',
-                  'latitude':''
-                  }
+	shoppingmall = [malls]
 
 	db = MySQLdb.connect(host='localhost',user='root',passwd='',db='test',charset='utf8')
 	cursor = db.cursor()
 	cursor.execute('select * from shoppingmall')
 
 	result = cursor.fetchall()
+	shoppingmall.remove(malls) 
 
 	i = 0
 	for v in result:
 
-	#	shoppingmall[i] = {}
-	#	shoppingmall[i]['name'] = v[1]
-	#	shoppingmall[i]['address'] = v[2]
-	#	shoppingmall[i]['phone'] = v[3]
-	#	shoppingmall[i]['city'] = v[4]
-	#	shoppingmall[i]['review'] = v[5]
-	#	shoppingmall[i]['longitude'] = v[6]
-	#	shoppingmall[i]['latitude'] = v[7]
-	#	print shoppingmall[i]['name'].encode("utf8")
-
+		temp = {}
+		temp['name'] = v[1][:10]
+		temp['address'] = v[2][:8]
+		temp['phone'] = v[3][:12]
+		temp['city'] = v[4]
+		temp['review'] = v[5][:16] + u'...'
+		temp['longitude'] = v[6]
+		temp['latitude'] = v[7]
+		shoppingmall.append(temp)
 		i=i +1
 
 	cursor.close()
-	print v
-	shoppingmall = {}
-	shoppingmall['name'] = v[1]
-	shoppingmall['address'] = v[2]
-	shoppingmall['phone'] = v[3]
-	shoppingmall['city'] = v[4]
-	shoppingmall['review'] = v[5]
-	shoppingmall['longitude'] = v[6]
-	shoppingmall['latitude'] = v[7]
-	print shoppingmall
+	print shoppingmall[1]['name']
 	return render_to_response('shangchang.html',{'shoppingmall':shoppingmall})
