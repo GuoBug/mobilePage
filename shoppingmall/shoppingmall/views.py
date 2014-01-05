@@ -13,6 +13,10 @@ def hello(request):
 def Malls(request):
 	shoppingmall = [malls]
 
+	page = request.path.split('/')
+
+	print '页数' + page[2]
+
 	db = MySQLdb.connect(host='localhost',user='root',passwd='',db='test',charset='utf8')
 	cursor = db.cursor()
 	cursor.execute('select * from shoppingmall')
@@ -35,5 +39,6 @@ def Malls(request):
 		i=i +1
 
 	cursor.close()
+	i = int(page[2])
 	print shoppingmall[1]['name']
-	return render_to_response('shangchang.html',{'shoppingmall':shoppingmall})
+	return render_to_response('shangchang.html',{'shoppingmall':shoppingmall[(i-1)*10:i*10-1]})
