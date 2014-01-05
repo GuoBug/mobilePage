@@ -55,8 +55,7 @@
           <div class="row">
             <div class="col-8 col-sm-12 col-lg-12">
               <table class="table table-striped">
-              <col span="1" width="5" />
-              <col span="4" width="6" />
+              <col span="4" width="3" />
               {% for shoppingmall in shoppingmall %}
                 <tr>
                   <td>{{shoppingmall.name}}</td>
@@ -65,12 +64,10 @@
                   <td>城市:{{shoppingmall.city}}</td>
                   <td>评价:{{shoppingmall.review}}</td>
          <!--         <td>坐标:{{shoppingmall.longitude}},{{shoppingmall.latitude}}</td> -->
-                  <td><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></td>
                 </tr>
                 {% endfor %}
               </table>
 
-              <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
             </div><!--/span-->
             
           </div><!--/row-->
@@ -95,6 +92,31 @@
         </div><!--/span-->
       </div><!--/row-->
 
+      <ul class="pagination">
+        <li><a href="/mall/1/">&laquo;</a></li>
+        <script type="text/javascript">
+        var page = window.location.pathname.split("/");
+        var num = Number(page[2])
+
+        //document.write(page);
+
+        for (var i = num - 4; i <= num + 4;i++)
+        {
+          if (i <= 0)
+            continue;
+          if (i == num)
+          {
+            document.write("\<li class=\"active\"\>\<a href=\"\/mall\/"  + i + "\/\"\>" + i + "\<\/a\>\<\/li\>");
+          }
+          else
+          {
+            document.write("\<li\>\<a href=\"\/mall\/"  + i + "\/\"\>" + i + "\<\/a\>\<\/li\>");
+          }
+        }
+        </script>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+        
       <hr>
 
       <footer>
@@ -108,6 +130,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
+
+
 <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
 
     {% load staticfiles %}
