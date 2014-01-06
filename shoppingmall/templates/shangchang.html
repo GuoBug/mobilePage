@@ -2,7 +2,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />  
     <meta name="description" content="问购网提供最新最全的全国商场打折信息,包括上海商场、北京商场、广州商场的权威打折信息">
 
     <title>商场】商场大全_商场打折_商场中心网_问购网</title>
@@ -52,17 +52,32 @@
             <h3>城市:</h3>
             <p>!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
           </div>
-          <div class="row">
+          <div class="row show-grid">
             <div class="col-8 col-sm-12 col-lg-12">
-              <table class="table table-striped">
-              <col span="4" width="3" />
+              <table class="table table-striped" style="word-break:break-all">
+
               {% for shoppingmall in shoppingmall %}
                 <tr>
-                  <td>{{shoppingmall.name}}</td>
-                  <td>地址:{{shoppingmall.address}}</td>
-                  <td>电话:{{shoppingmall.phone}}</td>
-                  <td>城市:{{shoppingmall.city}}</td>
-                  <td>评价:{{shoppingmall.review}}</td>
+                  <td rowspan="4" width="90" class="col-xs-3">
+                    <a href="/malldetail/{{shoppingmall.id}}">
+                    <img src="http://www.ask-mall.com/images/wu.gif" class="img-responsive">
+                    </a>
+                  </td>
+                  <td colspan="2">
+                    <a href="/malldetail/{{shoppingmall.id}}">
+                    <h4>{{shoppingmall.name}}</h4>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-xs-3">城市:{{shoppingmall.city}}</td>
+                  <td class="col-xs-6">电话:{{shoppingmall.phone}}</td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="hidden-xs">地址:{{shoppingmall.address}}</td>
+                </tr>
+                <tr>
+                  <td colspan="3">评价:{{shoppingmall.review}}</td>
          <!--         <td>坐标:{{shoppingmall.longitude}},{{shoppingmall.latitude}}</td> -->
                 </tr>
                 {% endfor %}
@@ -100,7 +115,7 @@
 
         //document.write(page);
 
-        for (var i = num - 4; i <= num + 4;i++)
+        for (var i = num - 3; i <= num + 3;i++)
         {
           if (i <= 0)
             continue;

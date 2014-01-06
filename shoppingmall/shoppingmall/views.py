@@ -28,9 +28,10 @@ def Malls(request):
 	for v in result:
 
 		temp = {}
-		temp['name'] = v[1][:10]
-		temp['address'] = v[2][:8]
-		temp['phone'] = v[3][:12]
+		temp["id"] = v[0]
+		temp['name'] = v[1]
+		temp['address'] = v[2]
+		temp['phone'] = v[3]
 		temp['city'] = v[4]
 		temp['review'] = v[5][:16] + u'...'
 		temp['longitude'] = v[6]
@@ -42,3 +43,4 @@ def Malls(request):
 	i = int(page[2])
 	print shoppingmall[1]['name']
 	return render_to_response('shangchang.html',{'shoppingmall':shoppingmall[(i-1)*10:i*10-1]})
+
