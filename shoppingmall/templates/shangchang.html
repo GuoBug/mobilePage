@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />  
     <meta name="description" content="问购网提供最新最全的全国商场打折信息,包括上海商场、北京商场、广州商场的权威打折信息">
 
-    <title>商场】商场大全_商场打折_商场中心网_问购网</title>
+    <title>商场大全_商场打折_商场中心网_问购网</title>
 
     <!-- Bootstrap core CSS -->
   {% load staticfiles %}
@@ -55,7 +55,7 @@
           </p>
           <div class="jumbotron">
             <h3>城市:</h3>
-            <p>!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+            <p><a href="/city/1/鞍山">鞍山</a></p>
           </div>
           <div class="row show-grid">
             <div class="col-8 col-sm-12 col-lg-12">
@@ -126,11 +126,11 @@
             continue;
           if (i == num)
           {
-            document.write("\<li class=\"active\"\>\<a href=\"\/mall\/"  + i + "\/\"\>" + i + "\<\/a\>\<\/li\>");
+            document.write("\<li class=\"active\"\>\<a href=\"\/"+page[1]+"\/"  + i + "\/"+page[3]+"\"\>" + i + "\<\/a\>\<\/li\>");
           }
           else
           {
-            document.write("\<li\>\<a href=\"\/mall\/"  + i + "\/\"\>" + i + "\<\/a\>\<\/li\>");
+            document.write("\<li\>\<a href=\"\/"+page[1]+"\/"+i+"\/"+page[3]+"\"\>"+i + "\<\/a\>\<\/li\>");
           }
         }
         </script>

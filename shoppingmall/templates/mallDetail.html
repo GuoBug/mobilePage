@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />  
+    <meta name="description" content="问购网提供最新最全的全国商场打折信息,包括上海商场、北京商场、广州商场的权威打折信息">
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+  {% load staticfiles %}
+  <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+  {% load staticfiles %}
+  <link href="{% static "css/offcanvas.css" %}"rel="stylesheet">
+
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">问购网</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">首页</a></li>
+            <li><a href="/">奢侈品</a></li>
+            <li class="active"><a href="/">商场</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+    </head>
+
+    <body>
+
+    <div class="container">
+      <div class="crumbs">当前位置：
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li>
+        <script type="text/javascript">
+            var page = window.location.pathname.split("/");
+            var num = Number(page[2]);
+            var i = parseInt(num/10) + 1;
+
+            document.write("\<a href=\"\/mall\/"  + i + "\/\"\>商场\<\/a\>");
+        </script>
+        </li>
+        <li class="active">{{mallInfo.name}}</li>
+      </ol>
+      </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><h2 class="text-center">{{mallInfo.name}}</h2></div>
+      <div class="panel-body">
+        <div>
+        <img src="http://www.ask-mall.com/images/wu.gif" class="img-responsive col-xs-4" width="90" style="float: left;">
+        </div>
+        <ul class="col-xs-8" style="float: left;">
+            <li>城市:{{mallInfo.city}}</li>
+            <li>电话:{{mallInfo.phone}}</li>
+            <li>地址:{{mallInfo.address}}</li>
+        </ul>
+      </div>
+
+
+    </div>
+    评价:
+    <div class="well well-sm">{{mallInfo.review}}</div>
+    
+    <iframe width="325" height="225" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll={{mallInfo.latitude}},{{mallInfo.longitude}}&amp;spn=0.013229,0.022724&amp;t=m&amp;z=16&amp;output=embed" ></iframe><br/>   <hr>
+        
+    <footer>
+        <p>&copy; 没什么</p>
+    </footer>
+
+    </div>
+
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+
+
+    {% load staticfiles %}
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    {% load staticfiles %}
+    <script src="{% static "js/offcanvas.js" %}"></script>
+    </body>
+
+</html>

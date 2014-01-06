@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',hello),
     url(r'^mall/',Malls),
-    url(r'^malldetail/',ShowDetail)
+    url(r'^malldetail/',ShowDetail),
+    url(r'^city/',ShowCity)
 )
