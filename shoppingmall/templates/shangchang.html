@@ -14,10 +14,6 @@
     <!-- Custom styles for this template -->
   {% load staticfiles %}
   <link href="{% static "css/offcanvas.css" %}"rel="stylesheet">
-
-  </head>
-
-  <body>
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -38,9 +34,18 @@
       </div><!-- /.container -->
     </div><!-- /.navbar -->
 
+  </head>
+
+  <body>
+
+
 
     <div class="container">
-    <div class="crumbs">当前位置：<a href="http://www.ask-mall.com">首页</a> &gt; 商场</div>
+      <div class="crumbs">当前位置：<ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">商场</li>
+      </ol>
+      </div>
 
 
       <div class="row row-offcanvas row-offcanvas-right">
@@ -135,7 +140,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; 没什么</p>
       </footer>
 
     </div><!--/.container-->
