@@ -55,7 +55,10 @@
         <li class="active">{{mallInfo.name}}</li>
       </ol>
       </div>
-
+    <div class="col-xs-12 col-sm-9">
+      <p class="pull-right visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">边侧栏</button>
+      </p>
     <div class="panel panel-default">
       <div class="panel-heading"><h2 class="text-center">{{mallInfo.name}}</h2></div>
       <div class="panel-body">
@@ -68,19 +71,40 @@
             <li>地址:{{mallInfo.address}}</li>
         </ul>
       </div>
-
-
     </div>
+
     评价:
     <div class="well well-sm">{{mallInfo.review}}</div>
     
-    <iframe width="325" height="225" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll={{mallInfo.latitude}},{{mallInfo.longitude}}&amp;spn=0.013229,0.022724&amp;t=m&amp;z=16&amp;output=embed" ></iframe><br/>   <hr>
+    <iframe width="325" height="225" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll={{mallInfo.latitude}},{{mallInfo.longitude}}&amp;spn=0.013229,0.022724&amp;t=m&amp;z=16&amp;output=embed" ></iframe><br/> 
+    </div> 
+
+
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="well sidebar-nav">
+          <ul class="nav">
+            <li>Sidebar</li>
+            <li class="active"><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li>Sidebar</li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li>Sidebar</li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div><!--/.well -->
+      </div><!--/span-->
+    </div>
+    </div>
+    <hr>
         
     <footer>
         <p>&copy; 没什么</p>
     </footer>
 
-    </div>
 
     <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
 
