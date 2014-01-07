@@ -31,7 +31,7 @@ def ShowDetail(request):
 
 	print '商场编号' + info[2]
 
-	mallInfo = DbSelect(1,info[2])
+	mallInfo = DbSelect(2,info[2])
 	topTen = DbSelect(2,'top')
 
 	return render_to_response('mallDetail.html',{'mallInfo':mallInfo[0],'topTen':topTen})
@@ -43,7 +43,7 @@ def ShowCity(request):
 	print '商场编号' + info[3]
 
 	cityInfo = DbSelect(2,info[3])
-	topTen = DbSelect(2,'top')
+	topTen = DbSelect(1,'top')
 
 	i = int(info[2])
 
@@ -60,13 +60,13 @@ def DbSelect(id,instring):
 	if (id == 1):
 		if (instring !='0' ):
 			print 'var is exist'
-			cursor.execute('select * from shoppingmall where Id =\'' + instring +'\'')
+			cursor.execute('select * from shoppingmall where city=\'' + instring + '\'')
 		else:
 			print 'no var'
 			cursor.execute('select * from shoppingmall')
 	if (id == 2):
 		if (instring != 'top'):
-			cursor.execute('select * from shoppingmall where city=\'' + instring + '\'')
+			cursor.execute('select * from shoppingmall where Id =\'' + instring +'\'')
 		else:
 			cursor.execute('select * from shoppingmall order by id desc limit 10')
 
@@ -82,10 +82,12 @@ def DbSelect(id,instring):
 		temp['address'] = v[2]
 		temp['phone'] = v[3]
 		temp['city'] = v[4]
-		temp['review'] = v[5][:16] + u'...'
 		temp['longitude'] = v[6]
 		temp['latitude'] = v[7]
+		if (id == 1):
+			temp['review'] = v[5][:16] + u'...'
+		else:
+			temp['review'] = v[5]
 		shoppingmall.append(temp)
-		i=i +1
 
 	return shoppingmall
