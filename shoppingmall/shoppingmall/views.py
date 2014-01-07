@@ -20,9 +20,10 @@ def Malls(request):
 	i = int(page[2])
 
 	shoppingmall = DbSelect(1,'0')
+	topTen = DbSelect(2,'top')
 
 	print shoppingmall[1]
-	return render_to_response('shangchang.html',{'shoppingmall':shoppingmall[(i-1)*10:i*10-1]})
+	return render_to_response('shangchang.html',{'shoppingmall':shoppingmall[(i-1)*10:i*10-1],'topTen':topTen})
 
 #单个
 def ShowDetail(request):
@@ -31,8 +32,9 @@ def ShowDetail(request):
 	print '商场编号' + info[2]
 
 	mallInfo = DbSelect(1,info[2])
+	topTen = DbSelect(2,'top')
 
-	return render_to_response('mallDetail.html',{'mallInfo':mallInfo[0]})
+	return render_to_response('mallDetail.html',{'mallInfo':mallInfo[0],'topTen':topTen})
 
 #城市
 def ShowCity(request):
@@ -41,10 +43,11 @@ def ShowCity(request):
 	print '商场编号' + info[3]
 
 	cityInfo = DbSelect(2,info[3])
+	topTen = DbSelect(2,'top')
 
 	i = int(info[2])
 
-	return render_to_response('shangchang.html',{'shoppingmall':cityInfo[(i-1)*10:i*10-1]})
+	return render_to_response('shangchang.html',{'shoppingmall':cityInfo[(i-1)*10:i*10-1],'topTen':topTen})
 
 # 操作数据库
 def DbSelect(id,instring):
@@ -62,8 +65,10 @@ def DbSelect(id,instring):
 			print 'no var'
 			cursor.execute('select * from shoppingmall')
 	if (id == 2):
-		cursor.execute('select * from shoppingmall where city=\'' + instring + '\'')
-
+		if (instring != 'top'):
+			cursor.execute('select * from shoppingmall where city=\'' + instring + '\'')
+		else:
+			cursor.execute('select * from shoppingmall order by id desc limit 10')
 
 	result = cursor.fetchall()
 	shoppingmall.remove(malls) 
