@@ -1,0 +1,95 @@
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>
+程序员|鲁塔弗的博客 
+</title> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+</head> 
+<body> 
+
+<div data-role="page">
+
+    <div data-role="header">
+
+    <div data-role="navbar">
+        <ul>
+            <li><a href="/" data-role="button" data-icon="star">首页</a></li>
+            
+            <li><a href="/" data-role="button" data-icon="gear">奢侈品</a></li>
+            
+            <li><a href="/" data-role="button" data-icon="alert" >商场</a></li>
+            
+        </ul>
+    </div><!-- /navbar -->
+        
+    <h1>携程旅行-酒店预订,机票预订查询,旅游度假,商旅管理-携程无线官网</h1>
+
+    </div><!-- /header -->
+
+    <div data-role="content">
+
+        <a href="#popupNested" data-rel="popup" data-role="button" data-inline="true">城市</a>
+        <ul data-role="listview" data-inset="ture" data-theme="d" data-divider-theme="d">
+            {% for shoppingmall in shoppingmall %}
+
+            <li data-role="list-divider">{{shoppingmall.name}}</li>
+            <li><a href="malldetail/{{shoppingmall.id}}"><img src="http://www.ask-mall.com/images/wu.gif" />城市:{{shoppingmall.city}}<br/>电话:{{shoppingmall.phone}}</a></li>
+            <li><a href="/malldetail/{{shoppingmall.id}}">地址:{{shoppingmall.address}}</a></li>
+            <li><a href="/malldetail/{{shoppingmall.id}}">评价:{{shoppingmall.review}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <div data-role="popup" id="popupNested" data-theme="none">
+            <div data-role="collapsible-set" data-theme="a" data-content-theme="d" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" style="margin:0; width:250px;">
+                <div data-role="collapsible" data-inset="false">
+                    <h2>请选择城市</h2>
+                    <ul data-role="listview">
+                        {% for cityname in cityname %}
+                        <li><a href="/city/1/{{cityname}}">{{cityname}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div><!-- /collapsible -->
+            </div><!-- /collapsible set -->
+        </div><!-- /popup -->
+        
+
+    </div><!-- /content -->
+
+
+<div data-role="footer" data-id="foo1" data-position="fixed">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="/category" data-transition="slide">分类</a></li>
+            
+            <li><a  class="ui-disabled">上一页</a></li>
+            
+            <script type="text/javascript">
+        var page = window.location.pathname.split("/");
+        var num = Number(page[2])
+
+        //document.write(page);
+
+        var i = num + 1;
+
+        document.write("\<li\>\<a href=\"\/"+page[1]+"\/"+i+"\" data-transition=\"slide\"\>下一页\<\/a\>\<\/li\>");
+
+        </script>
+        </ul>
+    </div><!-- /navbar -->
+</div><!-- /footer -->
+
+</div><!-- /page -->
+
+<div style="display:none">
+
+</div>
+</body>
+</html>
