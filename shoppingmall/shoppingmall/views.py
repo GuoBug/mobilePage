@@ -26,6 +26,25 @@ def Malls(request):
 	print shoppingmall[1]
 	return render_to_response('shangchang.html',{'shoppingmall':shoppingmall[(i-1)*10:i*10-1],'topTen':topTen,'cityname':city[:10],'citynamehide':city[11:]})
 
+
+#手机
+def Mobile(request):
+	shoppingmall = [malls]
+
+	page = request.path.split('/')
+
+	print '页数' + page[2]
+
+	i = int(page[2])
+
+	shoppingmall = DbSelect(1,'0')
+	topTen = DbSelect(2,'top')
+	city = DbSelect(2,'city')
+
+	print shoppingmall[1]
+	return render_to_response('mobile.html',{'shoppingmall':shoppingmall[(i-1)*10:i*10-1],'topTen':topTen,'cityname':city[:10],'citynamehide':city[11:]})
+
+
 #单个
 def ShowDetail(request):
 	info =request.path.split('/')

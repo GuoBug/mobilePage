@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^$',hello),
     url(r'^mall/',Malls),
     url(r'^malldetail/',ShowDetail),
-    url(r'^city/',ShowCity)
+    url(r'^city/',ShowCity),
+    url(r'^mobile/',Mobile)
 )
