@@ -10,6 +10,10 @@ from urllib2 import Request, urlopen,URLError, HTTPError
 from urllib import quote
 from bs4 import BeautifulSoup
 
+
+queue = Queue.Queue()
+out_queue = Queue.Queue()
+
 def fetchurl(url,count):
 
 	req=urllib2.Request(url,None)
@@ -35,27 +39,38 @@ def fetchurl(url,count):
 
 	return string
  
+class ThreadUrl(threading.Thread):
 
-def find4Web(Key):
+	def __init__(self, out_queue):
+		threading.Thread.__init__(self)
+		self.out_queue = out_queue
 
-	answer = {}
-	try:
-		for i in range(10,51,10):
-			para = urllib.urlencode({'pn':i,'word':Key,'sa':'np','st':'111081'})
-			print para
-			UrlStr = "http://m.baidu.com/s?"+para
-			answer.update( fetchurl(UrlStr,i))
+    def run(self):
+    	Key = self.out_queue.get()
 
-			print answer
+		answer = {}
+		try:
+			for i in range(10,51,10):
+				para = urllib.urlencode({'pn':i,'word':Key,'sa':'np','st':'111081'})
+				print para
+				UrlStr = "http://m.baidu.com/s?"+para
+				answer.update( fetchurl(UrlStr,i))
 
-	except Exception,e:
+				print answer
 
-		print e
+		except Exception,e:
 
-	return answer
+			print e
+
+		return answer
    
+def main():
 
-if __name__=="__main__":
+    #spawn a pool of threads, and pass them queue instance
+    for i in range(5):
+        t = ThreadUrl(queue, out_queue)
+        t.setDaemon(True)
+        t.start()
 
 	f = open("key.txt",'r')
 	w = open("res.txt",'w')
@@ -68,7 +83,6 @@ if __name__=="__main__":
 		w.write("%s:\n"%(keyWord))
 		for k,v in values.iteritems():
 			w.write('%d\t%s\n'%(k,v))
-		time.sleep(4)
 
 	w.close()
 	f.close()
